@@ -15,19 +15,20 @@ Test case:
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
-browser = webdriver.Chrome(executable_path="")
+browser = webdriver.Chrome()
 
+browser.implicitly_wait(5)
 url = "https://www.google.com"
 browser.get(url)
 
-search_bar = browser.find_element(By.CSS_SELECTOR, "input.gLFyf")
+search_bar = browser.find_element(By.CSS_SELECTOR, "textarea.gLFyf")
 search_query = "python"
 search_bar.clear()
 search_bar.send_keys(search_query)
 
 browser.find_element(By.CSS_SELECTOR, "input.gNO89b").click()
 
-assert search_query == browser.current_url, f"Search query {search_query} not in {browser.current_url}"
+assert search_query.lower() in browser.current_url.lower(), f"Search query {search_query} not in {browser.current_url}"
 print("Test case passed")
 
 browser.close()
