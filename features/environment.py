@@ -3,15 +3,31 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 from app1.application import Application
+from selenium.webdriver.chrome.options import Options
 
 
 def browser_init(context):
     """
     :param context: Behave context
-    """
-    driver_path = ChromeDriverManager().install()
-    service = Service(driver_path)
-    context.driver = webdriver.Chrome(service=service)
+     """
+    # driver_path = ChromeDriverManager().install()
+    # service = Service(driver_path)
+    # context.driver = webdriver.Chrome(service=service)
+
+    ## Crossbrowser:
+
+    context.driver = webdriver.Firefox()
+
+    ## Headless Browser:
+    # driver_path = ChromeDriverManager().install()
+    # service = Service(driver_path)
+    # options = webdriver.ChromeOptions()
+    # options.add_argument('--headless')
+    # options.add_argument("--window-size=1920,1080")
+    # context.driver = webdriver.Chrome(
+    #     chrome_options=options,
+    #     service=service)
+
     context.driver.maximize_window()
     context.driver.implicitly_wait(4)
     context.driver.wait = WebDriverWait(context.driver, 5)
