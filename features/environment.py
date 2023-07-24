@@ -4,6 +4,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 from app1.application import Application
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
 
 def browser_init(context):
@@ -16,7 +17,7 @@ def browser_init(context):
 
     ## Crossbrowser:
 
-    context.driver = webdriver.Firefox()
+    # context.driver = webdriver.Firefox()
 
     ## Headless Browser:
     # driver_path = ChromeDriverManager().install()
@@ -27,6 +28,47 @@ def browser_init(context):
     # context.driver = webdriver.Chrome(
     #     chrome_options=options,
     #     service=service)
+
+    #### BROWSERSTACK ####
+    # desired_cap = {
+    #     'bstack:options': {
+    #         "os": "OS X",
+    #         "osVersion": "Ventura",
+    #         "browserVersion": "latest",
+    #         "local": "false",
+    #         "seleniumVersion": "3.14.0",
+    #     },
+    #     "browserName": "Chrome",
+    # }
+    #
+    # bs_user = 'mounikajothi_O89pfG'
+    # bs_key = '4uSCyMyVv3Bu2kSjjqmA'
+    # url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
+    # context.driver = webdriver.Remote(url, desired_capabilities=desired_cap)
+    # value = context.scenario.name
+    # context.driver.execute_script(
+    #     'browserstack_executor:{"action":"setSessionName","arguments": {"name": "' + value + '"}}')
+
+    options = FirefoxOptions()
+    bs_user = 'mounikajothi_O89pfG'
+    bs_key = '4uSCyMyVv3Bu2kSjjqmA'
+
+    # Setting the capabilities
+    caps = {
+        "os": "OS X",
+        "osVersion": "Catalina",
+        # "sessionName": context.scenario.name
+    }
+
+    options.set_capability('bstack:options', caps)
+    options.set_capability('browserVersion', '95')
+    options.set_capability('browserName', 'Firefox')
+
+    # connecting the test to Browserstack
+    url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
+    context.driver = webdriver.Remote(
+        command_executor=url,
+        options=options)
 
     context.driver.maximize_window()
     context.driver.implicitly_wait(4)
@@ -47,6 +89,8 @@ def before_step(context, step):
 def after_step(context, step):
     if step.status == 'failed':
         print('\nStep failed: ', step)
+    # context.driver.execute_script(
+    #     'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"passed", "reason": "Validation  passed"}}')
 
 
 def after_scenario(context, feature):

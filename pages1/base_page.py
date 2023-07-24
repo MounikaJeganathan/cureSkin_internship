@@ -31,6 +31,7 @@ class Page:
         self.driver.get(url)
         print(f'Opening URL: {url}')
 
+
     # def open_url(self, url='`'):
     #     print(f'Opening URL: {url}')
     #     self.driver.get(url)`
