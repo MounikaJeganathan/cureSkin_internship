@@ -89,8 +89,8 @@ def before_step(context, step):
 def after_step(context, step):
     if step.status == 'failed':
         print('\nStep failed: ', step)
-    # context.driver.execute_script(
-    #     'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"passed", "reason": "Validation  passed"}}')
+    context.driver.execute_script(
+        'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"passed", "reason": "Validation  passed"}}')
 
 
 def after_scenario(context, feature):
