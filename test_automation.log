@@ -1,0 +1,6 @@
+2023-07-25 18:14:13,530 - support.logger - INFO - Clicking on xpath, //summary[@class = 'header__menu-item header__menu-item--top list-menu__item focus-inset']//span[contains(text(),'Shop by Category')]
+2023-07-25 18:14:18,230 - support.logger - INFO - Verifying the title displayed with Face 
+2023-07-25 18:14:25,058 - support.logger - INFO - Item have Face text in it
+2023-07-25 18:39:22,773 - support.logger - INFO - Clicking on xpath, //summary[@class = 'header__menu-item header__menu-item--top list-menu__item focus-inset']//span[contains(text(),'Shop by Category')]
+2023-07-25 18:39:25,687 - support.logger - INFO - Verifying the title displayed with Face 
+2023-07-25 18:39:28,734 - support.logger - INFO - Item have Face text in it

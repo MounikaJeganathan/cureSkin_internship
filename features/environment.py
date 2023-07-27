@@ -15,6 +15,9 @@ def browser_init(context):
     # service = Service(driver_path)
     # context.driver = webdriver.Chrome(service=service)
 
+    # Allure command:
+    # python3 -m behave -f allure_behave.formatter:AllureFormatter -o test_results/ features/tests/amazon_sign_in.feature
+
     ## Crossbrowser:
 
     # context.driver = webdriver.Firefox()

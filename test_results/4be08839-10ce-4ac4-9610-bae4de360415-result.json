@@ -1,0 +1,53 @@
+{
+  "name": "User is shopping from shop by category",
+  "status": "passed",
+  "steps": [
+    {
+      "name": "Given Open cure skin main page",
+      "status": "passed",
+      "start": 1690334044881,
+      "stop": 1690334052526
+    },
+    {
+      "name": "When Click to \"Shop by category\" - select Face",
+      "status": "passed",
+      "start": 1690334052526,
+      "stop": 1690334058013
+    },
+    {
+      "name": "Then Verify face header is shown",
+      "status": "passed",
+      "start": 1690334058015,
+      "stop": 1690334058555
+    },
+    {
+      "name": "Then Verify first product name has the word Face in it",
+      "status": "passed",
+      "start": 1690334058555,
+      "stop": 1690334065308
+    }
+  ],
+  "start": 1690334034709,
+  "stop": 1690334067156,
+  "uuid": "2a9edb03-c0b6-46d0-ac54-3683d56f9ca9",
+  "historyId": "19ac756c7fb5260ecd317467183dc763",
+  "fullName": "User can shop by category Face: User is shopping from shop by category",
+  "labels": [
+    {
+      "name": "severity",
+      "value": "normal"
+    },
+    {
+      "name": "feature",
+      "value": "User can shop by category Face"
+    },
+    {
+      "name": "framework",
+      "value": "behave"
+    },
+    {
+      "name": "language",
+      "value": "cpython3"
+    }
+  ]
+}
