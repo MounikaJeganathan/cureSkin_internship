@@ -22,6 +22,13 @@ def browser_init(context):
 
     # context.driver = webdriver.Firefox()
 
+    ## Mobile Emulator:
+
+    mobile_emulation = {"deviceName": "iPhone 12 Pro"}
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_experimental_option("mobileEmulation", mobile_emulation)
+    context.driver = webdriver.Chrome(options=chrome_options)
+
     ## Headless Browser:
     # driver_path = ChromeDriverManager().install()
     # service = Service(driver_path)
@@ -33,45 +40,27 @@ def browser_init(context):
     #     service=service)
 
     #### BROWSERSTACK ####
-    # desired_cap = {
-    #     'bstack:options': {
-    #         "os": "OS X",
-    #         "osVersion": "Ventura",
-    #         "browserVersion": "latest",
-    #         "local": "false",
-    #         "seleniumVersion": "3.14.0",
-    #     },
-    #     "browserName": "Chrome",
-    # }
-    #
+
+    # options = FirefoxOptions()
     # bs_user = 'mounikajothi_O89pfG'
     # bs_key = '4uSCyMyVv3Bu2kSjjqmA'
-    # url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
-    # context.driver = webdriver.Remote(url, desired_capabilities=desired_cap)
-    # value = context.scenario.name
-    # context.driver.execute_script(
-    #     'browserstack_executor:{"action":"setSessionName","arguments": {"name": "' + value + '"}}')
 
-    options = FirefoxOptions()
-    bs_user = 'mounikajothi_O89pfG'
-    bs_key = '4uSCyMyVv3Bu2kSjjqmA'
-
-    # Setting the capabilities
-    caps = {
-        "os": "OS X",
-        "osVersion": "Catalina",
-        # "sessionName": context.scenario.name
-    }
-
-    options.set_capability('bstack:options', caps)
-    options.set_capability('browserVersion', '95')
-    options.set_capability('browserName', 'Firefox')
+    # # Setting the capabilities
+    # caps = {
+    #     "os": "OS X",
+    #     "osVersion": "Catalina",
+    #     # "sessionName": context.scenario.name
+    # }
+    #
+    # options.set_capability('bstack:options', caps)
+    # options.set_capability('browserVersion', '95')
+    # options.set_capability('browserName', 'Firefox')
 
     # connecting the test to Browserstack
-    url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
-    context.driver = webdriver.Remote(
-        command_executor=url,
-        options=options)
+    # url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
+    # context.driver = webdriver.Remote(
+    #     command_executor=url,
+    #     options=options)
 
     context.driver.maximize_window()
     context.driver.implicitly_wait(4)
@@ -92,8 +81,8 @@ def before_step(context, step):
 def after_step(context, step):
     if step.status == 'failed':
         print('\nStep failed: ', step)
-    context.driver.execute_script(
-        'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"passed", "reason": "Validation  passed"}}')
+    # context.driver.execute_script(
+    #     'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"passed", "reason": "Validation  passed"}}')
 
 
 def after_scenario(context, feature):

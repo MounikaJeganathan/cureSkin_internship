@@ -10,8 +10,11 @@ def open_main_page(context):
 
 @when('Click to "Shop by category" - select Face')
 def shop_category(context):
-    context.app.header_cure.click_shop_category()
-    context.app.shop_category_page.click_face()
+    # context.app.header_cure.click_shop_category()
+    # context.app.shop_category_page.click_face()
+    context.app.header_cure.click_shop_category_mobile()
+    context.app.shop_category_page.click_face_mob()
+
 
 
 @then('Verify {expected_text} header is shown')
